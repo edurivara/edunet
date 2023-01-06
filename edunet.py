@@ -1,4 +1,6 @@
 import numpy as np
+import matplotlib.pyplot as plt
+
 np.set_printoptions(precision=10)
 
 def tanh(x):
@@ -53,7 +55,8 @@ class Network:
 
             #calculate average error in all samples for this epoch
             err /= samples
-            print('epoch %d/%d  error=%f' % (i+1, epochs, err))
+            if ((i+1)%100==0):
+                print('epoch %d/%d  error=%f' % (i+1, epochs, err))
 
     def predict(self, input_data):
         samples = len(input_data)
@@ -125,3 +128,15 @@ net.add(ActivationLayer(tanh, tanh_prime))
 
 net.fit(x_train, y_train, epochs=1000, learning_rate=0.1)
 print(net.predict(x_train))
+
+fig = plt.figure(figsize=(8,8))
+ax = fig.add_subplot(111, projection='3d')
+ax = plt.axes(projection='3d')
+
+for x in np.arange(1, step=0.05):
+    for y in np.arange(1, step=0.05):
+        x_plot = np.array([ [[x,y]] ])
+        z = net.predict(x_plot)
+        ax.scatter(x, y, z, c="c", s=50, alpha=0.5)
+
+plt.show()
