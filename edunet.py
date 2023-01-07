@@ -17,7 +17,7 @@ net.add(layers.ActivationLayer(math_formulas.sigmoid, math_formulas.sigmoid_prim
 net.add(layers.FCLayer(3,1))
 net.add(layers.ActivationLayer(math_formulas.sigmoid, math_formulas.sigmoid_prime))
 
-net.fit(x_train, y_train, epochs=10000, learning_rate=2)
+net.fit(x_train, y_train, epochs=10000, learning_rate=0.5)
 print(net.predict(x_train))
 
 # Plot 3d contour of XOR prediction
