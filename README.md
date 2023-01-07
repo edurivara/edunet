@@ -2,14 +2,18 @@
 
 ## Neural Network in Python using no nn libraries.
 
-<pre>
-Network class
+### Network class
 
     - Add layers
 
-Layer class
+### Layer class
 
     - Fully connected layer with no activations
     - Activations layer
     - Fully connected layer with activations
-</pre?>
+
+### to predict XOR resuls
+
+```bash
+$ python edunet_predict_XOR.py
+```
