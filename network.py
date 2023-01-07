@@ -13,11 +13,11 @@ class Network:
     def add(self, layer):
         self.layers.append(layer)
 
-    def use(self, loss, loss_prime):
+    def set_loss_function(self, loss, loss_prime):
         self.loss = loss
         self.loss_prime = loss_prime
 
-    def fit(self, x_train, y_train, epochs, learning_rate):
+    def train(self, x_train, y_train, epochs, learning_rate):
         samples = len(x_train)
 
         for i in range(epochs):
