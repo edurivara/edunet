@@ -38,7 +38,7 @@ class Network:
 
             #calculate average error in all samples for this epoch
             err /= samples
-            if ((i+1)%100==0):
+            if ((i+1)%1000==0):
                 print('epoch %d/%d  error=%f' % (i+1, epochs, err))
 
     def predict(self, input_data):
