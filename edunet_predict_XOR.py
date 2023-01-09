@@ -5,8 +5,8 @@ import math_formulas
 from network import Network
 import layers
 
-x_train = np.array([ [[0,0]], [[0,1]], [[1,0]], [[1,1]] ])
-y_train = np.array([ [[0]],   [[1]],   [[1]],   [[0]] ])
+train_inputs = np.array([ [[0,0]], [[0,1]], [[1,0]], [[1,1]] ])
+train_results = np.array([ [[0]],   [[1]],   [[1]],   [[0]] ])
 
 # set seed to a number to obtain repeatable results ie: 1 for dove shaped XOR contour space
 # ie: Resutls for 10000 epochs, seed(1)
@@ -29,11 +29,11 @@ net.set_loss_function(math_formulas.mse, math_formulas.mse_prime)
 net.add(layers.FullyConnectedLayerWithActivation(2, 3, math_formulas.sigmoid, math_formulas.sigmoid_prime))
 net.add(layers.FullyConnectedLayerWithActivation(3, 1, math_formulas.sigmoid, math_formulas.sigmoid_prime))
 
-net.train(x_train, y_train, epochs=10000, learning_rate=0.5)
+net.train(train_inputs, train_results, epochs=10000, learning_rate=0.5)
 
-predictions = net.predict(x_train)
-for index, input in enumerate(x_train):
-    print("For input: " + str(input[0]) + "  Expected: " + str(y_train[index][0]) + "  Prediction: " + str(predictions[index][0]))
+predictions = net.predict(train_inputs)
+for index, input in enumerate(train_inputs):
+    print("For input: " + str(input[0]) + "  Expected: " + str(train_results[index][0]) + "  Prediction: " + str(predictions[index][0]))
 
 # Plot 3d contour of XOR prediction
 fig = plt.figure(figsize=(8,8))

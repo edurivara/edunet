@@ -1,3 +1,5 @@
+import numpy as np
+
 class Network:
     def __init__(self):
         self.layers = []
@@ -23,29 +25,31 @@ class Network:
         for i in range(epochs):
             err = 0
             for j in range(samples):
-                #forward_propagation
+                # forward_propagation
                 output = x_train[j]
                 for layer in self.layers:
                     output = layer.forward_propagation(output)
 
-                #err used for display purposes
+                # err used for display purposes
                 err += self.loss(y_train[j], output)
 
-                #backpropagation
+                # backpropagation
                 error = self.loss_prime(y_train[j], output)
                 for layer in reversed(self.layers):
                     error = layer.backward_propagation(error, learning_rate)
 
-            #calculate average error in all samples for this epoch
+            # calculate average error in all samples for this epoch
             err /= samples
-            if ((i+1)%1000==0):
+            
+            # print error every 1/10th apochs
+            if ((i+1)%np.floor(epochs/10)==0):
                 print('epoch %d/%d  error=%f' % (i+1, epochs, err))
 
     def predict(self, input_data):
         samples = len(input_data)
         results = []
 
-        #run network over all samples
+        # run network over all samples
         for i in range(samples):
             output = input_data[i]
             for layer in self.layers:
