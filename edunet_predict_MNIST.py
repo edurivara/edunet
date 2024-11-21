@@ -1,7 +1,7 @@
 import numpy as np
 from matplotlib import pyplot as plt
 from keras.datasets import mnist
-from keras.utils import np_utils
+from keras import utils
 
 import math_formulas
 from network import Network
@@ -25,8 +25,8 @@ train_inputs_new /= 255
 test_inputs_new /= 255
 
 # convert results to category array
-train_results_new = np_utils.to_categorical(train_results)
-test_results_new = np_utils.to_categorical(test_results)
+train_results_new = utils.to_categorical(train_results)
+test_results_new = utils.to_categorical(test_results)
 
 # create the network
 net = Network()
@@ -36,7 +36,7 @@ net.add(layers.FullyConnectedLayerWithActivation(50, 10, math_formulas.tanh, mat
 
 # hiperparameters
 samples = 4000
-epochs = 100
+epochs = 20
 learning_rate = 0.1
 
 # train the network
@@ -74,5 +74,3 @@ plt.subplot(4, 3, 11)
 plt.imshow(manual_test.test_input_manual[0], cmap=plt.get_cmap('Blues'))
 
 plt.show()
-
-# plt.show()
